@@ -50,26 +50,40 @@ $D_i^{-1}$: Inverse Distance to Industry, prioritizing locations near existing i
 
 $w_s, w_c, w_i$: Weights, adjustable parameters to align the simulation with specific strategic goals (e.g., prioritizing logistical efficiency over land cost).
 
-##3. Simulation Workflow
+## 3. System Architecture & Methodology
 
-The tool executes a step-by-step simulation to model the deployment of smart farms over time.
+This tool is designed as the core analytical engine (Steps 2-4) within a larger, end-to-end geospatial data pipeline.
 
-Step 1: Resource Analysis (자원 분석)
-The tool analyzes all non-urban parcels within the greenbelt to calculate the total potential for new smart farm modules based on the Land Conversion Efficiency model.
 
-Step 2: Candidate Site Analysis (후보지 분석)
-Simultaneously, it analyzes all urban parcels within the designated "islands" and calculates a Site Suitability Index (SSI) for each, creating a ranked list of optimal deployment locations.
 
-Step 3: Phased Deployment Simulation (단계별 배치 시뮬레이션)
-The simulation runs in phases (e.g., for years 2050, 2075, 2100). In each phase:
+[Image of a data processing workflow diagram]
 
-A portion of the total smart farm potential is "unlocked".
 
-The tool places these new smart farm modules on the available sites with the highest SSI scores.
+`[Raw Satellite Imagery] -> [STEP 1: Labeling] -> [**STEP 2: Analysis Prep**] -> [**STEP 3: Priority Scoring**] -> [**STEP 4: Simulation**] -> [Final Output]`
 
-To make room and consolidate land use, urban sites with the lowest SSI scores are systematically demolished.
+While this project focuses on the core optimization logic (Steps 2-4), it is designed to seamlessly integrate with a preceding imagery labeling module (Step 1).
 
-This workflow ensures that the deployment is not random, but a strategic process that continuously optimizes for the best available locations.
+---
+
+### **Step 1: Spatial Imagery Labeling (Data Input Specification)**
+
+This analytical engine assumes an input land cover map has been generated from raw spatial imagery (e.g., satellite or aerial photos). The tool is agnostic to the labeling method (manual or automated via Machine Learning), but it requires the input data to conform to a specific **Data Schema**.
+
+The input must be a polygon feature class (e.g., `.gpkg` or `.shp`) with at least the following attribute field:
+
+| Field Name | Data Type | Description | Example |
+| :--- | :--- | :--- | :--- |
+| `L3_CODE` | Text | A standardized land cover classification code. | `211`, `311`, `112` |
+
+This modular design ensures that as long as the input data meets this simple schema, the core analysis can be run on data from any source.
+
+---
+
+### **Step 2: Analysis Preparation (Current Project Scope)**
+
+Once the standardized land cover map is loaded, the tool begins its core process:
+1.  **Node Conversion**: Converts each land parcel polygon into a 'Digital Node'.
+2.  **Attribute Labeling**: Assigns simulation-specific labels to each node, such as `NodeStatus` and `EvolvedCategory`.
 
 ## 4. Technologies Used
 
