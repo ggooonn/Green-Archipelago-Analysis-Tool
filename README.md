@@ -1,112 +1,86 @@
 # Green-Archipelago-Analysis-Tool
 
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg) ![ArcPy](https://img.shields.io/badge/ArcPy-ArcGIS%20Pro-blue.svg) ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+
 ## 1. Overview
 
-This repository contains a GIS-based decision support tool for strategic smart farm placement within urban greenbelts. Faced with inefficiently managed greenbelt land, this tool provides a quantitative methodology to answer two critical questions:
+This repository contains a GIS-based decision support tool for **strategic smart farm placement within South Korea's metropolitan greenbelts**. This system provides a quantitative methodology to analyze underutilized land and model a long-term deployment of high-efficiency smart farms, grounded in official national land cover standards.
 
-Where are the optimal locations to replace underutilized urban parcels with high-efficiency smart farms?
+The tool is designed to answer two critical questions for urban planners and policymakers:
 
-How much productive value can be generated from the existing land resources?
+1.  **Where** are the optimal locations to replace inefficient urban parcels with productive smart farms?
+2.  **How much** agricultural value can be generated from existing greenbelt resources?
 
-The system analyzes geospatial data to model a long-term, phased deployment of smart farm modules, maximizing both spatial efficiency and agricultural output.
+---
 
-## 2. Core Methodology
+## 2. System Architecture & Methodology
 
-The tool's logic is built upon two key analytical models derived from the project's code: the Land Conversion Efficiency model and the Site Suitability Index.
+This tool is designed as the core analytical engine (Steps 2-4) within a larger, **end-to-end geospatial data pipeline**.
 
-### 2.1. 토지 전환 효율 (Land Conversion Efficiency)
-
-This model quantifies the productive potential of existing greenbelt land. It addresses the question: "How many new smart farm modules can we build?"
-
-Each parcel of existing agricultural or forest land (Source Node) is assigned a CompressionFactor. This factor represents how many traditional land units are required to provide the resources for one modern, high-yield smart farm module. The total number of new modules that can be generated is calculated by the formula:
-
-$$\text{Number of New Smart Farm Modules} = \sum_{i=1}^{n} \frac{1}{\text{CompressionFactor}_i}$$
-
-Where:
-
-n is the number of source land parcels being converted.
-
-CompressionFactor is the land conversion ratio for each parcel i. A lower factor indicates higher efficiency (e.g., a fertile paddy field might have a lower factor than a sparse forest).
-
-This calculation directly links the potential of the existing, low-density greenbelt to the creation of new, high-density agricultural infrastructure.
-
-### 2.2. 입지 적합도 지수 (Site Suitability Index)
-
-This model identifies the best locations for the newly generated smart farms. It answers the question: "Where should we build them?"
-
-The tool calculates a ReplacePriority score for every replaceable urban parcel (Target Node) within the greenbelt's urban "islands". This score serves as a Site Suitability Index, with higher scores indicating more optimal locations. The formula is:
-
-$$\text{Site Suitability Index (SSI)} = (w_s \times S) + (w_c \times D_c^{-1}) + (w_i \times D_i^{-1})$$
-
-Where:
-
-SSI: The ReplacePriority score for a parcel.
-
-S: Status Score, representing the parcel's current urban value. Low-value parcels (e.g., dilapidated single-family homes) receive a higher score for replacement.
-
-$D_c^{-1}$: Inverse Distance to Center, prioritizing locations near the area's logistical core for efficient distribution and access.
-
-$D_i^{-1}$: Inverse Distance to Industry, prioritizing locations near existing industrial zones to leverage infrastructure, utilities, and labor pools.
-
-$w_s, w_c, w_i$: Weights, adjustable parameters to align the simulation with specific strategic goals (e.g., prioritizing logistical efficiency over land cost).
-
-## 3. System Architecture & Methodology
-
-This tool is designed as the core analytical engine (Steps 2-4) within a larger, end-to-end geospatial data pipeline.
-
-
-
-[Image of a data processing workflow diagram]
-
+The ultimate vision is a complete 1-4 pipeline where raw spatial imagery can be processed and fed directly into this analysis engine. The pipeline's modularity ensures that different labeling methods (manual, automated, or ML-based) can be used for Step 1, as long as the output conforms to the required data schema.
 
 `[Raw Satellite Imagery] -> [STEP 1: Labeling] -> [**STEP 2: Analysis Prep**] -> [**STEP 3: Priority Scoring**] -> [**STEP 4: Simulation**] -> [Final Output]`
 
-While this project focuses on the core optimization logic (Steps 2-4), it is designed to seamlessly integrate with a preceding imagery labeling module (Step 1).
+### Current Project Scope (Steps 2, 3, & 4)
 
----
+Currently, this repository contains the robust implementation of **Steps 2, 3, and 4**.
 
-### **Step 1: Spatial Imagery Labeling (Data Input Specification)**
+It operates on the assumption that a standardized, pre-labeled land cover map (the output of Step 1) is provided as an input. This allows for a deep focus on the core optimization logic, scoring algorithms, and simulation engine.
 
-This analytical engine assumes an input land cover map has been generated from raw spatial imagery (e.g., satellite or aerial photos). The tool is agnostic to the labeling method (manual or automated via Machine Learning), but it requires the input data to conform to a specific **Data Schema**.
+### Step 1: Input Data Specification (The Data Contract)
 
-The input must be a polygon feature class (e.g., `.gpkg` or `.shp`) with at least the following attribute field:
+For the 1-2-3-4 pipeline to be possible, the analysis engine requires the output of Step 1 to adhere to a specific **Data Schema**. This project's guidelines are based on the **official Land Cover Map classification system from the South Korean Ministry of Environment (환경부)**.
+
+The required input polygon feature class must contain:
 
 | Field Name | Data Type | Description | Example |
 | :--- | :--- | :--- | :--- |
-| `L3_CODE` | Text | A standardized land cover classification code. | `211`, `311`, `112` |
+| `L3_CODE` | Text | Ministry of Environment's Level-3 (세분류) land cover code. | `211` (논), `311` (활엽수림), `112` (주거지역) |
 
-This modular design ensures that as long as the input data meets this simple schema, the core analysis can be run on data from any source.
+As long as any labeling process (manual or automated) produces a shapefile or Gpkg with this standardized `L3_CODE` field, it can be directly consumed by this analysis engine.
 
 ---
 
-### **Step 2: Analysis Preparation (Current Project Scope)**
+### Step 2:  Analysis Preparation
 
-Once the standardized land cover map is loaded, the tool begins its core process:
-1.  **Node Conversion**: Converts each land parcel polygon into a 'Digital Node'.
-2.  **Attribute Labeling**: Assigns simulation-specific labels to each node, such as `NodeStatus` and `EvolvedCategory`.
+* **Node Conversion:** Converts the input `L3_CODE` polygons into 'Digital Nodes'.
+* **Data Modeling:** Assigns simulation-specific attributes (e.g., `NodeStatus`, `EvolvedCategory`) based on the standardized codes.
 
-## 4. Technologies Used
+### Step 3:  Site Suitability Scoring
 
-Core Language: Python
+* **Resource Analysis (How many?):** Calculates the total potential for new smart farm modules using the **Land Conversion Efficiency (`CompressionFactor`)** model. This model quantifies the productive potential of existing greenbelt land to determine how many new smart farm modules can be built.
 
-Geospatial Analysis: ArcPy (within ArcGIS Pro)
+  $$\text{Number of New Modules} = \sum_{i=1}^{n} \frac{1}{\text{CompressionFactor}_i}$$
 
-GIS Software: ArcGIS Pro, QGIS
+* **Candidate Analysis (Where?):** Ranks all replaceable urban nodes using the **Site Suitability Index (SSI)**. This index identifies where the new smart farms should be built by calculating a `ReplacePriority` score based on land value, centrality, and infrastructure proximity.
 
-## 5. How to Use
+  $$\text{Site Suitability Index (SSI)} = (w_s \times S) + (w_c \times D_c^{-1}) + (w_i \times D_i^{-1})$$
 
-Prerequisites: An ArcGIS Pro environment with Python 3 and the ArcPy library.
+### Step 4:  Phased Deployment Simulation
 
-Clone the Repository:
+* **Iterative Execution:** Runs a multi-generational simulation (e.g., 2050, 2075, 2100) to model a realistic, gradual deployment.
+* **Strategic Placement:** In each phase, the tool algorithmically deploys new modules to the highest-scoring sites (`SSI`) and removes low-scoring urban sites, modeling a data-driven optimization of the entire greenbelt.
 
-git clone [https://github.com/](https://github.com/)[Your-Username]/Green-Archipelago-Analysis-Tool.git
+---
 
+## 3. Technologies Used
 
-Configure: Open /scripts/config.py and modify the file paths, layer names, and simulation parameters (CompressionFactor, weights, etc.).
+* **Core Language:** `Python`
+* **Geospatial Analysis:** `ArcPy` (within ArcGIS Pro)
+* **GIS Software:** `ArcGIS Pro`, `QGIS`
 
-Run Simulation: Execute the main script from the ArcGIS Pro Python terminal.
+---
 
-python scripts/main.py
+## 4. How to Use
 
-
-Analyze Results: The output feature classes for each phase will be saved in the configured Geodatabase, ready for spatial analysis and visualization.
+1.  **Prerequisites:** An ArcGIS Pro environment with Python 3 and the `ArcPy` library.
+2.  **Clone the Repository:**
+    ```bash
+    git clone [https://github.com/](https://github.com/)[ggooonn]/Green-Archipelago-Analysis-Tool.git
+    ```
+3.  **Configure:** Open `/scripts/config.py` and modify the file paths, layer names, and simulation parameters (`CompressionFactor`, weights, `L3_CODE` mappings, etc.).
+4.  **Run Simulation:** Execute the main script from the ArcGIS Pro Python terminal.
+    ```bash
+    python scripts/main.py
+    ```
+5.  **Analyze Results:** The output feature classes for each phase will be saved in the configured Geodatabase, ready for spatial analysis and visualization.
