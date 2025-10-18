@@ -1,6 +1,6 @@
-Green-Archipelago-Analysis-Tool
+#Green-Archipelago-Analysis-Tool
 
-1. Overview
+##1. Overview
 
 This repository contains a GIS-based decision support tool for strategic smart farm placement within urban greenbelts. Faced with inefficiently managed greenbelt land, this tool provides a quantitative methodology to answer two critical questions:
 
@@ -10,11 +10,11 @@ How much productive value can be generated from the existing land resources?
 
 The system analyzes geospatial data to model a long-term, phased deployment of smart farm modules, maximizing both spatial efficiency and agricultural output.
 
-2. Core Methodology
+##2. Core Methodology
 
 The tool's logic is built upon two key analytical models derived from the project's code: the Land Conversion Efficiency model and the Site Suitability Index.
 
-2.1. 토지 전환 효율 (Land Conversion Efficiency)
+###2.1. 토지 전환 효율 (Land Conversion Efficiency)
 
 This model quantifies the productive potential of existing greenbelt land. It addresses the question: "How many new smart farm modules can we build?"
 
@@ -30,7 +30,7 @@ CompressionFactor is the land conversion ratio for each parcel i. A lower factor
 
 This calculation directly links the potential of the existing, low-density greenbelt to the creation of new, high-density agricultural infrastructure.
 
-2.2. 입지 적합도 지수 (Site Suitability Index)
+###2.2. 입지 적합도 지수 (Site Suitability Index)
 
 This model identifies the best locations for the newly generated smart farms. It answers the question: "Where should we build them?"
 
@@ -50,7 +50,7 @@ $D_i^{-1}$: Inverse Distance to Industry, prioritizing locations near existing i
 
 $w_s, w_c, w_i$: Weights, adjustable parameters to align the simulation with specific strategic goals (e.g., prioritizing logistical efficiency over land cost).
 
-3. Simulation Workflow
+##3. Simulation Workflow
 
 The tool executes a step-by-step simulation to model the deployment of smart farms over time.
 
@@ -71,7 +71,7 @@ To make room and consolidate land use, urban sites with the lowest SSI scores ar
 
 This workflow ensures that the deployment is not random, but a strategic process that continuously optimizes for the best available locations.
 
-4. Technologies Used
+##4. Technologies Used
 
 Core Language: Python
 
@@ -79,7 +79,7 @@ Geospatial Analysis: ArcPy (within ArcGIS Pro)
 
 GIS Software: ArcGIS Pro, QGIS
 
-5. How to Use
+##5. How to Use
 
 Prerequisites: An ArcGIS Pro environment with Python 3 and the ArcPy library.
 
