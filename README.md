@@ -10,7 +10,7 @@
 
 This tool provides a quantitative methodology for the strategic deployment of smart farms within **South Korea's metropolitan greenbelts**. As urban areas expand, these greenbelts face increasing pressure, becoming fragmented "islands" of underutilized land. GAAT is designed to model a data-driven solution to this challenge by identifying optimal locations for high-efficiency agricultural facilities.
 
-`![Image](https://github.com/user-attachments/assets/d6d8440c-3c9a-4697-b05f-6f863b6ad042)`
+![Image](https://github.com/user-attachments/assets/d6d8440c-3c9a-4697-b05f-6f863b6ad042)
 > *The challenge: Analyzing the fragmented and expanding urban "islands" within Siheung's greenbelt over time.*
 
 ---
@@ -29,14 +29,14 @@ The engine first identifies potential brownfield sites for redevelopment. It the
 
 GAAT simulates a gradual, phased deployment based on **production goals** (e.g., 50%, 80%, 100% of potential yield). This time-lapse demonstrates the strategic consolidation of production facilities over time, transforming the landscape according to the SSI logic.
 
-`![Image](https://github.com/user-attachments/assets/a9657e1e-c05f-470f-adcf-005c74f35f66)`
+![Image](https://github.com/user-attachments/assets/a9657e1e-c05f-470f-adcf-005c74f35f66)
 > *Full simulation showing the phased deployment of new smart farm facilities onto prioritized brownfield sites.*
 
 ### 2.3. The "What": Demolition & Replacement Detail
 
 This image provides a detailed before-and-after view of a specific area within the simulation, showing low-priority urban parcels being replaced by high-efficiency smart farm modules.
 
-`![Image](https://github.com/user-attachments/assets/000c8ef6-6d7b-4fb2-a7ec-fb7ee7143442)``![Image](https://github.com/user-attachments/assets/a5691f6b-d515-4126-9011-5a14d66bc213)`
+![Image](https://github.com/user-attachments/assets/000c8ef6-6d7b-4fb2-a7ec-fb7ee7143442) ![Image](https://github.com/user-attachments/assets/a5691f6b-d515-4126-9011-5a14d66bc213)
 > *Detailed view: Initial state (left) and the final state after demolition and replacement (right).*
 
 ---
