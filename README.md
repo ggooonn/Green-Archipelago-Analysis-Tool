@@ -53,15 +53,11 @@ The engine ingests a polygon feature class adhering to the **South Korean Minist
 
 * **Resource Analysis (How many?):** Calculates the total potential for new modules using the **Land Conversion Efficiency (`CompressionFactor`)** model.
 
-    $$
-    \text{Number of New Modules} = \sum_{i=1}^{n} \frac{1}{\text{CompressionFactor}_{i}}
-    $$
+    ![Formula 1: Number of New Modules](https://i.ibb.co/3YpsG5G/formula1.png)
 
 * **Candidate Analysis (Where?):** Ranks replaceable urban nodes using the **Site Suitability Index (SSI)**. The formula breaks down how the score is calculated, balancing land status, centrality, and infrastructure proximity with user-defined weights.
 
-    $$
-    \text{SSI} = (w_{\text{status}} \times \text{Score}_{\text{status}}) + (w_{\text{center}} \times \text{Score}_{\text{center}}) + (w_{\text{industry}} \times \text{Score}_{\text{industry}})
-    $$
+    ![Formula 2: Site Suitability Index](https://i.ibb.co/C0f90N3/formula2.png)
 
     *Where:*
     * $w$: User-defined weights from the configuration file (`WEIGHT_STATUS`, `WEIGHT_INV_CEN_DIST`, `WEIGHT_INV_IND_DIST`).
