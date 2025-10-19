@@ -66,8 +66,9 @@ $$
 *Where:*
 * $w$: User-defined weights from the configuration file (`WEIGHT_STATUS`, `WEIGHT_INV_CEN_DIST`, `WEIGHT_INV_IND_DIST`).
 * $\text{Score}_{\text{status}}$: A score based on the land's urban classification (High vs. Low priority).
-* $\text{Score}_{\text{center}}$: A normalized score based on the inverse distance to the island's center ($D_{c}^{-1}$).
-* $\text{Score}_{\text{industry}}$: A normalized score based on the inverse distance to the nearest industrial area ($D_{i}^{-1}$).
+* $\text{Score}_{\text{center}}$: A normalized score based on the inverse distance to the island's center ($\mathbf{D_{c}^{-1}}$).
+* $\text{Score}_{\text{industry}}$: A normalized score based on the inverse distance to the nearest industrial area ($\mathbf{D_{i}^{-1}}$).
+
   
 ### Algorithmic Validation: Distance vs. Priority Score
 The following charts analyze the relationship between the calculated SSI (`ReplacePriority`) and key distance factors. The low R² values suggest that while distance is a component, the priority score is influenced by a combination of factors, preventing simple distance-based bias.
