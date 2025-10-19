@@ -70,7 +70,7 @@ $\text{Score}_{\text{status}}$: A score based on the land's urban classification
 
 $\text{Score}_{\text{center}}$: A normalized score based on the inverse distance to the island's center
 
-$\text{Score}_{\text{industry}}$$: A normalized score based on the inverse distance to the nearest industrial area
+$\text{Score}_{\text{industry}}$: A normalized score based on the inverse distance to the nearest industrial area
 
   
 ### Algorithmic Validation: Distance vs. Priority Score
