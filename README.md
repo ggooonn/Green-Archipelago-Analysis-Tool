@@ -77,10 +77,10 @@ $\text{Score}_{\text{industry}}$: A normalized score based on the inverse distan
 The following charts analyze the relationship between the calculated SSI (`ReplacePriority`) and key distance factors. The low R² values suggest that while distance is a component, the priority score is influenced by a combination of factors, preventing simple distance-based bias.
 
 <img width="1489" height="341" alt="Image" src="https://github.com/user-attachments/assets/81f1ae0a-4cb8-422d-9a15-6621cbb5034b" />
-> *SSI vs. Distance from Island Center (R² ≈ 0.08)*
+> SSI vs. Distance from Island Center (R² ≈ 0.08)
 
 <img width="1489" height="341" alt="Image" src="https://github.com/user-attachments/assets/4dca4884-decd-4e45-8324-3801998f88ba" />
-> *SSI vs. Distance from Industrial Area (R² ≈ 0.13)*
+> SSI vs. Distance from Industrial Area (R² ≈ 0.13)
 
 ### Step 4: Phased Deployment Simulation
 The simulation runs iteratively based on **data-driven production goals** (e.g., 50%, 80%, 100%), strategically placing new modules and removing low-scoring urban sites.
