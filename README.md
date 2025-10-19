@@ -50,14 +50,18 @@ The engine ingests a polygon feature class adhering to the **South Korean Minist
 * **Data Modeling:** Assigns simulation-specific attributes (e.g., `NodeStatus`).
 
 ### Step 3: Site Suitability Scoring (SSI)
+
 * **Resource Analysis (How many?):** Calculates the total potential for new modules using the **Land Conversion Efficiency (`CompressionFactor`)** model.
-$$
-\text{Number of New Modules} = \sum_{i=1}^{n} \frac{1}{\text{CompressionFactor}_i}
-$$
+
+    $$
+    \text{Number of New Modules} = \sum_{i=1}^{n} \frac{1}{\text{CompressionFactor}_i}
+    $$
+
 * **Candidate Analysis (Where?):** Ranks replaceable urban nodes using the **Site Suitability Index (SSI)**. This formula visualizes the core decision-making logic of the tool, balancing land status (`S`), distance to center (`Dc`), and distance to industry (`Di`) with user-defined weights (`w`).
-$$
-\text{SSI} = (w_s \times S) + (w_c \times D_c^{-1}) + (w_i \times D_i^{-1})
-$$
+
+    $$
+    \text{SSI} = (w_s \times S) + (w_c \times D_c^{-1}) + (w_i \times D_i^{-1})
+    $$
 
 ### Algorithmic Validation: Distance vs. Priority Score
 The following charts analyze the relationship between the calculated SSI (`ReplacePriority`) and key distance factors. The low R² values suggest that while distance is a component, the priority score is influenced by a combination of factors, preventing simple distance-based bias.
