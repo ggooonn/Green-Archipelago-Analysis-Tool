@@ -62,6 +62,7 @@ The engine ingests a polygon feature class adhering to the **South Korean Minist
     $$
     \text{SSI} = (w_s \times S) + (w_c \times D_c^{-1}) + (w_i \times D_i^{-1})
     $$
+  
 
 ### Algorithmic Validation: Distance vs. Priority Score
 The following charts analyze the relationship between the calculated SSI (`ReplacePriority`) and key distance factors. The low R² values suggest that while distance is a component, the priority score is influenced by a combination of factors, preventing simple distance-based bias.
