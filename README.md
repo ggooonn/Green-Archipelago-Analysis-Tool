@@ -64,10 +64,13 @@ $$
 $$
 
 *Where:*
-* $w$: User-defined weights from the configuration file (`WEIGHT_STATUS`, `WEIGHT_INV_CEN_DIST`, `WEIGHT_INV_IND_DIST`).
-* $\text{Score}_{\text{status}}$: A score based on the land's urban classification (High vs. Low priority).
-* **$`\text{Score}_{\text{center}}$`**: A normalized score based on the inverse distance to the island's center ($`D_{c}^{-1}`$).
-* **$`\text{Score}_{\text{industry}}$`**: A normalized score based on the inverse distance to the nearest industrial area ($`D_{i}^{-1}`$).
+$w$: User-defined weights from the configuration file (`WEIGHT_STATUS`, `WEIGHT_INV_CEN_DIST`, `WEIGHT_INV_IND_DIST`).
+
+$\text{Score}_{\text{status}}$: A score based on the land's urban classification (High vs. Low priority).
+
+$\text{Score}_{\text{center}}$: A normalized score based on the inverse distance to the island's center ($D_{c}^{-1}$).
+
+$\text{Score}_{\text{industry}}$: A normalized score based on the inverse distance to the nearest industrial area ($D_{i}^{-1}$).
 
   
 ### Algorithmic Validation: Distance vs. Priority Score
