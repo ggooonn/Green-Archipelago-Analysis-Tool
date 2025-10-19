@@ -4,7 +4,7 @@
 
 ---
 
-## 1. Overview 🎯
+## 1. Overview 
 
 The Green-Archipelago-Analysis-Tool (GAAT) is a GIS-based decision support tool for the **strategic placement of smart farms within South Korea's metropolitan greenbelts**. As urban areas expand, these greenbelts face increasing pressure, becoming fragmented "islands" of underutilized land. GAAT is designed to model a data-driven solution to this challenge.
 
@@ -17,7 +17,7 @@ GAAT addresses two critical questions:
 
 ---
 
-## 2. How to Use 🚀
+## 2. How to Use 
 
 This tool is designed to run as a standalone script within the ArcGIS Pro Python environment.
 
@@ -29,11 +29,11 @@ This tool is designed to run as a standalone script within the ArcGIS Pro Python
 
 ---
 
-## 3. System Architecture & Methodology ⚙️
+## 3. System Architecture & Methodology 
 
 GAAT functions as the **Action Engine (Steps 2-4)** operating on data classified by established **Step 1** processes (like ML-based `Crop Classification`).
 
-`[STEP 1: Classification/Labeling] -> [**STEP 2: Analysis Prep**] -> [**STEP 3: Scoring**] -> [**STEP 4: Simulation**]`
+`[STEP 1: Classification/Labeling] -> [STEP 2: Analysis Prep] -> [STEP 3: Scoring] -> [STEP 4: Simulation]`
 
 ![Image](https://github.com/user-attachments/assets/a9657e1e-c05f-470f-adcf-005c74f35f66)
 > *Core Output: Phased deployment simulation based on production goals (e.g., 50%, 80%, 100%).*
@@ -73,18 +73,18 @@ The simulation runs iteratively based on **data-driven production goals** (e.g.,
 
 ---
 
-## 4. Visual Output Example ✨
+## 4. Visual Output Example 
 
 **Demolition & Replacement Detail:**
 This image provides a detailed before-and-after view of a specific area, showing low-priority urban parcels being replaced by high-efficiency smart farm modules.
 
 ![Image](https://github.com/user-attachments/assets/000c8ef6-6d7b-4fb2-a7ec-fb7ee7143442) ![Image](https://github.com/user-attachments/assets/a5691f6b-d515-4126-9011-5a14d66bc213)
 
-> *Detailed view: Initial state (left) vs. final state after simulation (right).*
+> *Detailed view: Initial state (up) vs. final state after simulation (down).*
 
 ---
 
-## 5. Technologies Used 💻
+## 5. Technologies Used 
 
 * **Core Language:** `Python`
 * **Geospatial Analysis:** `ArcPy` (within ArcGIS Pro)
@@ -92,13 +92,13 @@ This image provides a detailed before-and-after view of a specific area, showing
 
 ---
 
-## 6. Data Source 💾
+## 6. Data Source 
 
 The sample dataset (`/data/GAAT_Sample_Data.gpkg`) is derived from the official **Land Cover Map (2020)** provided by the **Ministry of Environment, Republic of Korea (환경부)** (KOGL Type 1 license).
 
 ---
 
-## 7. Further Work / Notes 📝
+## 7. Further Work / Notes 
 
 * **Integrate Step 1:** Future development could involve adding a module for automated land cover classification (Step 1) using Machine Learning directly from satellite imagery to create a full end-to-end pipeline.
 * **Weight Tuning:** The low R² values in the validation charts suggest the current SSI weights (`w_s`, `w_c`, `w_i`) create a balanced score. However, further analysis and tuning based on specific policy goals could refine the model's performance and fairness characteristics.
