@@ -53,21 +53,21 @@ The engine ingests a polygon feature class adhering to the **South Korean Minist
 
 * **Resource Analysis (How many?):** Calculates the total potential for new modules using the **Land Conversion Efficiency (`CompressionFactor`)** model.
 
-    $$
-    \text{Number of New Modules} = \sum_{i=1}^{n} \frac{1}{\text{CompressionFactor}_{i}}
-    $$
+$$
+\text{Number of New Modules} = \sum_{i=1}^{n} \frac{1}{\text{CompressionFactor}_{i}}
+$$
 
 * **Candidate Analysis (Where?):** Ranks replaceable urban nodes using the **Site Suitability Index (SSI)**. The formula breaks down how the score is calculated, balancing land status, centrality, and infrastructure proximity with user-defined weights.
 
-    $$
-    \text{SSI} = (w_{\text{status}} \times \text{Score}_{\text{status}}) + (w_{\text{center}} \times \text{Score}_{\text{center}}) + (w_{\text{industry}} \times \text{Score}_{\text{industry}})
-    $$
+$$
+\text{SSI} = (w_{\text{status}} \times \text{Score}_{\text{status}}) + (w_{\text{center}} \times \text{Score}_{\text{center}}) + (w_{\text{industry}} \times \text{Score}_{\text{industry}})
+$$
 
-    *Where:*
-    * $w$: User-defined weights from the configuration file (`WEIGHT_STATUS`, `WEIGHT_INV_CEN_DIST`, `WEIGHT_INV_IND_DIST`).
-    * $\text{Score}_{\text{status}}$: A score based on the land's urban classification (High vs. Low priority).
-    * $\text{Score}_{\text{center}}$: A normalized score based on the inverse distance to the island's center ($D_{c}^{-1}$).
-    * $\text{Score}_{\text{industry}}$: A normalized score based on the inverse distance to the nearest industrial area ($D_{i}^{-1}$).
+*Where:*
+* $w$: User-defined weights from the configuration file (`WEIGHT_STATUS`, `WEIGHT_INV_CEN_DIST`, `WEIGHT_INV_IND_DIST`).
+* $\text{Score}_{\text{status}}$: A score based on the land's urban classification (High vs. Low priority).
+* $\text{Score}_{\text{center}}$: A normalized score based on the inverse distance to the island's center ($D_{c}^{-1}$).
+* $\text{Score}_{\text{industry}}$: A normalized score based on the inverse distance to the nearest industrial area ($D_{i}^{-1}$).
   
 ### Algorithmic Validation: Distance vs. Priority Score
 The following charts analyze the relationship between the calculated SSI (`ReplacePriority`) and key distance factors. The low R² values suggest that while distance is a component, the priority score is influenced by a combination of factors, preventing simple distance-based bias.
