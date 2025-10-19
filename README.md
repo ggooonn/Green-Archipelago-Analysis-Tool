@@ -57,7 +57,7 @@ The engine ingests a polygon feature class adhering to the **South Korean Minist
     \text{Number of New Modules} = \sum_{i=1}^{n} \frac{1}{\text{CompressionFactor}_{i}}
     $$
 
-* **Candidate Analysis (Where?):** Ranks replaceable urban nodes using the **Site Suitability Index (SSI)**. The formula below breaks down how the score is calculated, balancing land status, centrality, and infrastructure proximity with user-defined weights.
+* **Candidate Analysis (Where?):** Ranks replaceable urban nodes using the **Site Suitability Index (SSI)**. The formula breaks down how the score is calculated, balancing land status, centrality, and infrastructure proximity with user-defined weights.
 
     $$
     \text{SSI} = (w_{\text{status}} \times \text{Score}_{\text{status}}) + (w_{\text{center}} \times \text{Score}_{\text{center}}) + (w_{\text{industry}} \times \text{Score}_{\text{industry}})
